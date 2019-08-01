@@ -32,12 +32,12 @@ namespace WebApplication1.Models
 
         public override string ToString()
         {
-            return $"Id: {UserId}\t\tName: {Name}\t\tAge: {Age}\t\tLocation: {Location}\t\t{Work}";
+            return $"Id: {Id}\t\tName: {Name}\t\tAge: {Age}\t\tLocation: {Location}\t\t{Work}";
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(UserId, Name, Age, Location, Work);
+            return HashCode.Combine(Id, Name, Age, Location, Work);
         }
     }
 }

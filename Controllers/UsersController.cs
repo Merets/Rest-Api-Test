@@ -24,13 +24,13 @@ namespace WebApplication1.Controllers
 
             if (_context.Users.Count() == 0)
             {
-                _context.Users.Add(new UserDTO { Name = "Merets", Age = 35, Location = "RA", Work = new WorkDTO() { WorkId = 1, Name = "Sela", Location = "BB", Rating = 5.0 } });
-                _context.Users.Add(new UserDTO { Name = "Tomer", Age = 140, Location = "RA", Work = new WorkDTO() { WorkId = 2, Name = "Sela", Location = "BB", Rating = 5.0 } });
-                _context.Users.Add(new UserDTO { Name = "Itzhak", Age = 20, Location = "RA", Work = new WorkDTO() { WorkId = 3, Name = "Sela", Location = "BB", Rating = 5.0 } });
-                _context.Users.Add(new UserDTO { Name = "Yaakov", Age = 60, Location = "RA", Work = new WorkDTO() { WorkId = 4, Name = "Sela", Location = "BB", Rating = 5.0 } });
-                _context.Users.Add(new UserDTO { Name = "David", Age = 40, Location = "RA", Work = new WorkDTO() { WorkId = 5, Name = "Sela", Location = "BB", Rating = 5.0 } });
-                _context.Users.Add(new UserDTO { Name = "Avraham", Age = 100, Location = "LA", Work = new WorkDTO() { WorkId = 6, Name = "Sela", Location = "BB", Rating = 5 } });
-                _context.Users.Add(new UserDTO { Name = "Shlomo", Age = 30, Location = "RA", Work = new WorkDTO() { WorkId = 7, Name = "Sela", Location = "BB", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "Merets", Age = 35, Location = "RA", Work = new WorkDTO() { Id = 1, Name = "Sela", Location = "BB", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "Tomer", Age = 140, Location = "RA", Work = new WorkDTO() { Id = 2, Name = "Sela", Location = "BB", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "Itzhak", Age = 20, Location = "RA", Work = new WorkDTO() { Id = 3, Name = "Sela", Location = "BB", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "Yaakov", Age = 60, Location = "RA", Work = new WorkDTO() { Id = 4, Name = "Sela", Location = "BB", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "David", Age = 40, Location = "RA", Work = new WorkDTO() { Id = 5, Name = "Sela", Location = "BB", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "Avraham", Age = 100, Location = "LA", Work = new WorkDTO() { Id = 6, Name = "Sela", Location = "BB", Rating = 5 } });
+                _context.Users.Add(new UserDTO { Name = "Shlomo", Age = 30, Location = "RA", Work = new WorkDTO() { Id = 7, Name = "Sela", Location = "BB", Rating = 5.0 } });
                 _context.SaveChanges();
             }
         }
@@ -69,7 +69,7 @@ namespace WebApplication1.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, UserDTO user)
         {
-            if (id != user.UserId)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
@@ -99,10 +99,10 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> PostUser(UserDTO user)
         {
-            var previousMaxId = _context.Users.Max(u => u.UserId);
+            var previousMaxId = _context.Users.Max(u => u.Id);
             var maxId = previousMaxId + 1;
-            user.UserId = maxId;
-            user.Work.WorkId = maxId;
+            user.Id = maxId;
+            user.Work.Id = maxId;
 
             _context.Users.Add(user);
             try
@@ -114,7 +114,7 @@ namespace WebApplication1.Controllers
                 // Workaround!
                 if (ex.Message.Contains("An item with the same key has already been added"))
                 {
-                    return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+                    return CreatedAtAction("GetUser", new { id = user.Id }, user);
                 }
                 else
                 {
@@ -122,7 +122,7 @@ namespace WebApplication1.Controllers
                 }
             }
 
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
         // DELETE: api/Users/5
@@ -143,7 +143,7 @@ namespace WebApplication1.Controllers
 
         private bool UserExists(int id)
         {
-            return _context.Users.Any(e => e.UserId == id);
+            return _context.Users.Any(e => e.Id == id);
         }
 
 
@@ -151,7 +151,7 @@ namespace WebApplication1.Controllers
         [HttpPatch("{id}")]
         public async Task<ActionResult<string>> PatchUser(UserDTO user)
         {
-            var userFromDB = _context.Users.FirstOrDefault(u => u.UserId == user.UserId);
+            var userFromDB = _context.Users.FirstOrDefault(u => u.Id == user.Id);
             if (userFromDB == null)
                 return NotFound();
             else
