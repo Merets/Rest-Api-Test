@@ -24,13 +24,13 @@ namespace WebApplication1.Controllers
 
             if (_context.Users.Count() == 0)
             {
-                _context.Users.Add(new UserDTO { Name = "Merets", Age = 35, Location = "RA", Work = new WorkDTO() { Id = 1, Name = "Sela", Location = "BB", Rating = 5.0 } });
-                _context.Users.Add(new UserDTO { Name = "Tomer", Age = 140, Location = "RA", Work = new WorkDTO() { Id = 2, Name = "Sela", Location = "BB", Rating = 5.0 } });
-                _context.Users.Add(new UserDTO { Name = "Itzhak", Age = 20, Location = "RA", Work = new WorkDTO() { Id = 3, Name = "Sela", Location = "BB", Rating = 5.0 } });
-                _context.Users.Add(new UserDTO { Name = "Yaakov", Age = 60, Location = "RA", Work = new WorkDTO() { Id = 4, Name = "Sela", Location = "BB", Rating = 5.0 } });
-                _context.Users.Add(new UserDTO { Name = "David", Age = 40, Location = "RA", Work = new WorkDTO() { Id = 5, Name = "Sela", Location = "BB", Rating = 5.0 } });
-                _context.Users.Add(new UserDTO { Name = "Avraham", Age = 100, Location = "LA", Work = new WorkDTO() { Id = 6, Name = "Sela", Location = "BB", Rating = 5 } });
-                _context.Users.Add(new UserDTO { Name = "Shlomo", Age = 30, Location = "RA", Work = new WorkDTO() { Id = 7, Name = "Sela", Location = "BB", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "Merets", Age = 25, Location = "RA", Work = new WorkDTO() { Id = 1, Name = "Sela", Location = "BB", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "Tomer", Age = 43, Location = "RA", Work = new WorkDTO() { Id = 2, Name = "Microsoft", Location = "HR", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "Itzhak", Age = 20, Location = "RA", Work = new WorkDTO() { Id = 3, Name = "Google", Location = "CA", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "Yaakov", Age = 60, Location = "RA", Work = new WorkDTO() { Id = 4, Name = "Dell", Location = "TX", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "David", Age = 40, Location = "RA", Work = new WorkDTO() { Id = 5, Name = "IBM", Location = "PT", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "Avraham", Age = 32, Location = "LA", Work = new WorkDTO() { Id = 6, Name = "Samsung", Location = "SK", Rating = 5.0 } });
+                _context.Users.Add(new UserDTO { Name = "Shlomo", Age = 30, Location = "RA", Work = new WorkDTO() { Id = 7, Name = "Amazon", Location = "WA", Rating = 5.0 } });
                 _context.SaveChanges();
             }
         }
